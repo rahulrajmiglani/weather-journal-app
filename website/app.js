@@ -90,10 +90,8 @@ const updateUI = async (data) => {
   if (response.currentDate) {
     document.querySelector(".holder.entry").style.display = "block";
     document.querySelector("#date").innerHTML = `Date: ${response.currentDate}`;
-    document.querySelector("#temp").innerHTML = `Temperature: ${response.temp}`;
-    document.querySelector(
-      "#content"
-    ).innerHTML = `Feelings: ${response.feelings}`;
+    document.querySelector("#temp").innerHTML = `Temperature: `+Math.round(response.temp)+` Degrees`;
+    document.querySelector("#content").innerHTML = `Feelings: ${response.feelings}`;
     document.querySelector("#error").style.display = "none";
   } else {
     document.querySelector(".holder.entry").style.display = "none";
