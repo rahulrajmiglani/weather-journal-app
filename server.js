@@ -1,4 +1,4 @@
-
+let projectData={};
 
 // Import Express to run server and routes
 const express = require('express');
