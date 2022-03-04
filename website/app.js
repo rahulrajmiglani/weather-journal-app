@@ -79,11 +79,32 @@ const fetchData = async (url) => {
     const data = await fetch(url);
     try{
         const response = await data.json();
-        console.log(response);
+        // console.log(response);
         return response;
     }catch(e){
         console.error(e);
     }
 }
 
-//
+// updating UI
+const updateUI = async (data) => {
+    const response = await data;
+    console.log(response);
+
+    if(response.currentDate){
+
+        document.querySelector('.holder.entry').style.display = 'block';
+        document.querySelector('#date').innerHTML = `Date: ${response.currentDate}`;
+        document.querySelector('#temp').innerHTML = `Temperature: ${response.temp}`;
+        document.querySelector('#content').innerHTML = `Feelings: ${response.feelings}`;
+        document.querySelector('#error').style.display = 'none';
+        
+    }else{
+
+        document.querySelector('.holder.entry').style.display = 'none';
+        document.querySelector('#error').style.display = 'block';
+        document.querySelector('#error').innerHTML = `Error: ${response.message}`;
+    }
+
+
+}
