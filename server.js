@@ -35,3 +35,9 @@ function listening(){
 
 
 // GET Route
+
+app.post('/add', async (req, res) => {
+    projectData = await req.body; 
+    console.log(projectData);
+    res.send(projectData);
+})
