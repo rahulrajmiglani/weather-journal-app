@@ -19,7 +19,11 @@ generate.addEventListener('click', (event) => {
     // console.log(madeURL);
 
     getData(madeURL).then((info) => {
-        postData('/add', info);
+        postData('/add', info).then((data) => {
+            fetchData('/fetch').then((data) => {
+                updateUI(data);
+            });
+        });
     });
 
 })
@@ -40,7 +44,7 @@ const getData = async (url) => {
             feelings: feelings.value,
             temp: data.main.temp
         }
-        console.log(info);
+        // console.log(info);
         return info;
     }
     }catch(e){
@@ -62,9 +66,24 @@ const postData = async (url="", data={}) => {
     // console.log(result);
     try{
             const response = await result.json();
-            console.log(response);
+            // console.log(response);
             return response;
     }catch(e){
         console.log(e);
     }
 }
+
+// fetching data back from Server
+
+const fetchData = async (url) => {
+    const data = await fetch(url);
+    try{
+        const response = await data.json();
+        console.log(response);
+        return response;
+    }catch(e){
+        console.error(e);
+    }
+}
+
+//

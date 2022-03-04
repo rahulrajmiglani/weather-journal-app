@@ -32,12 +32,15 @@ function listening(){
 // ROUTES
 
 // POST Route
-
+app.post('/add', async (req, res) => {
+    projectData = await req.body; 
+    console.log(projectData);
+    res.send(projectData);
+})
 
 // GET Route
 
-app.post('/add', async (req, res) => {
-    projectData = await req.body; 
+app.get('/fetch', async (req, res) => {
     console.log(projectData);
     res.send(projectData);
 })
